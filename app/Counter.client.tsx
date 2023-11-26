@@ -1,4 +1,4 @@
-// @client
+'use client'
 import React from "react";
 import {useState} from 'react';
 
@@ -25,7 +25,7 @@ function Counter() {
         setCounter(counter+1)
     }
 
-    return <div><button onClick={handleClick}>Click</button></div>
+    return <div><button onClick={handleClick}>Click</button> count {counter}</div>
 }
 export default Counter;
 
