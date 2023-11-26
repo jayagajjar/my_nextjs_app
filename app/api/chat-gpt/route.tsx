@@ -1,7 +1,7 @@
 import { NextResponse } from "@/node_modules/next/server";
 import OpenAI from "@/node_modules/openai/index";
 
-export async function POST(request){
+export async function POST(request:any){
     const openai = new OpenAI({
         apiKey:process.env.OPENAI_API_KEY
     })
@@ -15,7 +15,7 @@ export async function POST(request){
         messages:[
             {
                 role: "system",
-                content: "Answer like you are very "+params.emotion
+                content: "Answer in maximum 100 words, and answer like you are very "+params.emotion
             },
             {
                 role:'user',

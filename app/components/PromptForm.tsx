@@ -1,7 +1,12 @@
 import { useState } from "react";
 import styles from "./PromptForm.module.css"
 
-export default function PromptForm({onSubmit, isLoading}){
+type PromptFormProps = {
+    onSubmit: (prompt: string, emotion: string) => Promise<void>;
+    isLoading: boolean;
+  };
+  
+export default function PromptForm({ onSubmit, isLoading }: PromptFormProps){
 
     const [prompt, setPrompt] = useState("");
     const [emotion, setEmotion] = useState("");
@@ -12,7 +17,8 @@ export default function PromptForm({onSubmit, isLoading}){
         onSubmit(prompt,emotion);
         setPrompt('')
     }}>
-        <label>AI does not have emotions but try giving it some.</label>
+        <br/>
+        <label>AI does not have emotions of its own, but try adding some: </label>
        <select value={emotion} onChange={e=>{setEmotion(e.target.value)}}>
 <option value="anger">Anger</option>
 <option value="happy">Happy</option>
@@ -22,6 +28,7 @@ export default function PromptForm({onSubmit, isLoading}){
 <option value="bored">Bored</option>
 
 </select>
+<br/>
 <br/>
         <label>Question</label>
         <input className={styles.input} type="text" value={prompt} onChange={e=>{setPrompt(e.target.value)}}></input>

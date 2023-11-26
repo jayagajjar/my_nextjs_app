@@ -11,16 +11,23 @@ import { useState } from 'react'
 import PromptForm from './components/PromptForm'
 import styles from 'page.module.css'
 
+type Choice = {
+  index: number; // or string, depending on your data
+  message: {
+    content: string;
+  };
+};
+
 export default function Home() {
   const person={
     name:'John Doe',
     age:24
   }
-  const [choices, setChoices] = useState([]);
+  const [choices, setChoices] = useState<Choice[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
-  const createQueryString = (name, value) => {
+  const createQueryString = (name:string, value:string) => {
     const params = new URLSearchParams();
     params.set(name, value);
 
@@ -31,7 +38,7 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.card}>
       <p>Hello from ChatGPT! </p>
-      <PromptForm isLoading={isLoading} onSubmit={async(prompt, emotion)=>{
+      <PromptForm isLoading={isLoading} onSubmit={async(prompt:string, emotion:string)=>{
         setIsLoading(true);
         const response = await fetch('./api/chat-gpt',{
           method: "POST",
@@ -51,6 +58,7 @@ export default function Home() {
       {/* <Counter/>
       <ToDoList/> 
       <Post/>*/}
+      <br/>
      {choices.map((choice)=><p className={styles.response} key={choice.index}>{choice.message.content}</p>)}
       {/* <Link href={{
         pathname:'/dashboard',

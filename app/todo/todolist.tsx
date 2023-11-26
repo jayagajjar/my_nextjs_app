@@ -3,22 +3,26 @@
 import { useState } from "react"
 import styles from './styles/styles.module.css'
 let id=0
+type ToDoList={
+  id:number,
+  text:string,
+}
 export const addTest = (num1:number,num2:number) => {
     return(num1+ num2);
   };
 const ToDoList=()=>{
     const [todoText,setToDoText]=useState('')
-    const [todoList,setToDoList]=useState([])
+    const [todoList,setToDoList]=useState<ToDoList[]>([])
 
     const [num1, setNum1] = useState(0);
     const [num2, setNum2] = useState(0);
     const [result, setResult] = useState(0);
     const add = () => {
-      setResult(parseInt(num1) + parseInt(num2));
+      setResult(num1 + num2);
     };
     
-    const handleChange=(e)=>{
-        setToDoText(e.target.value)
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setToDoText(e.target.value)
     }
    
     const handleClick=()=>{
@@ -47,14 +51,14 @@ const ToDoList=()=>{
         className={styles.input}
         data-testid="num1"
         value={num1}
-        onChange={(e) => setNum1(e.target.value)}
+        onChange={(e) => setNum1(parseInt( e.target.value))}
       />
       <input
         type="number"
         className={styles.input}
         data-testid="num2"
         value={num2}
-        onChange={(e) => setNum2(e.target.value)}
+        onChange={(e) => setNum2(parseInt(e.target.value))}
       />
       <button onClick={add} className={styles.button} data-testid="add">
         Add

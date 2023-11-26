@@ -4,7 +4,7 @@ import { useSearchParams } from "@/node_modules/next/navigation"
 
 export default function Dashboard() {
     const searchParams = useSearchParams();
-    const person = searchParams.get('person');
+    const person = searchParams.get('person')??'';
     const results = JSON.parse(person);
     console.log('result',person)
 
