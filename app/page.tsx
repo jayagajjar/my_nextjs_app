@@ -10,6 +10,8 @@ import { useRouter } from '@/node_modules/next/navigation'
 import { useState } from 'react'
 import PromptForm from './components/PromptForm'
 import styles from 'page.module.css'
+import ClassComponent from './components/ClassComponent'
+import FunctionalComponent from './components/FunctionalComponent'
 
 type Choice = {
   index: number; // or string, depending on your data
@@ -58,6 +60,8 @@ export default function Home() {
       {/* <Counter/>
       <ToDoList/> 
       <Post/>*/}
+      <ClassComponent/>
+      <FunctionalComponent/>
       <br/>
      {choices.map((choice)=><p className={styles.response} key={choice.index}>{choice.message.content}</p>)}
       {/* <Link href={{
