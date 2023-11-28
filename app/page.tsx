@@ -60,8 +60,8 @@ export default function Home() {
       {/* <Counter/>
       <ToDoList/> 
       <Post/>*/}
-      <ClassComponent/>
-      <FunctionalComponent/>
+      {/* <ClassComponent/>
+      <FunctionalComponent/> */}
       <br/>
      {choices.map((choice)=><p className={styles.response} key={choice.index}>{choice.message.content}</p>)}
       {/* <Link href={{
